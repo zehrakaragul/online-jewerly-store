@@ -1,0 +1,59 @@
+.navbar{
+    background-color: white;
+    color: black;
+    font-family: serif;
+    display: flex;
+    justify-content: space-between; /* İçerikleri arasında boşluk bırak */
+    align-items: center; /* Dikeyde ortala */
+    height: 100px; /* Navbar yüksekliği */
+    padding: 0 20px; /* Yan boşluklar */
+
+
+}
+
+.marka{
+    display: flex; /* İçeriği yatayda hizala */
+     position: relative;
+    text-decoration: none;
+    color: black;
+    font-family: serif;
+    font-weight: lighter;
+    font-size: 50px;
+    margin-left: 580px;
+    padding-left: 30px;
+    padding-right: 30px;
+
+}
+
+.marka::before,
+.marka::after {
+    content: ""; /* Pseudo-element içeriği */
+    position: absolute; /* Mutlak konumlandırma */
+    top: 50%; /* Üst kenarın ortalaması */
+    transform: translateY(-50%); /* Dikeyde ortala */
+    width: 100px; /* Çizgi uzunluğu */
+    border-top: 2px solid black; /* Çizgi stili */
+
+
+}
+
+.marka::before {
+    left: -90px; /* Soldan konumlandırma */
+}
+
+.marka::after {
+    right: -90px; /* Sağdan konumlandırma */
+}
+.icon-container {
+    margin-top: 100px;
+    margin-right: 30px;
+
+
+}  .icon-button {
+    margin-left: 15px; /* Butonlar arasında boşluk */
+     border: none;
+    color: dimgrey;
+    background-color: white;
+    font-size: 20px;
+   font-weight: lighter;
+}

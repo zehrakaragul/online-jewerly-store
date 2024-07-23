@@ -1,0 +1,119 @@
+/* Genel Stil Ayarları */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.mt-9 {
+    margin-top: 9rem;
+}
+
+/* Kart Stil Ayarları */
+.card {
+    border: none; /* Kenarlığı kaldırdık */
+    border-radius: 0; /* Border radius'u kaldırdık */
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+    overflow: hidden;
+
+}
+
+.card-img {
+    border-radius: 0;
+    width: 650px; /* Genişliği 200 piksel olarak ayarladık */
+    height: auto; /* Oranlı şekilde yüksekliği ayarladık */
+    transition: transform 0.3s ease, transform-origin 0.3s ease;
+}
+
+
+.card-img:hover{
+    transform: scale(1.5);
+    transform-origin: center;
+}
+
+
+
+.card-body {
+    margin-top: 50px;
+    margin-left: 50px;
+    padding: 20px;
+    flex-grow: 1;
+}
+
+.card-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.card-text {
+    font-size: 40px;
+    color: black;
+    margin-bottom: 20px;
+}
+
+/* Buton Stil Ayarları */
+.btn-group{
+    margin-left: 0px;
+}
+
+
+.btn-cart {
+    border-radius: 0;
+    background-color: #343333;
+    color: #fff;
+    border: none;
+    width: 120px;
+
+
+}
+
+.btn-cart:hover {
+    background-color: #fff; /* Butona imleç geldiğinde arka plan rengini değiştirme */
+    color: #343333; /* Butona imleç geldiğinde yazı rengini değiştirme */
+}
+.btn-like {
+    border-radius: 0px;
+    background-color: transparent;
+    color:  #343333;
+    border: 1px solid #343333;
+    margin-left: 10px;
+    height: 40px;
+    font-size: 20px;
+    font-weight:200;
+    width: 50px;
+
+}
+.btn-like:hover {
+    color: #343333;
+}
+
+.ms-2 {
+    margin-left: 0.5rem;
+}
+
+/* Ürün Açıklaması Stil Ayarları */
+.baslik{
+    font-size: 30px;
+    font-weight: 400;
+}
+.description {
+    background-color: #fff;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.description p {
+    margin: 0;
+    font-size: 16px;
+    color: #333;
+}

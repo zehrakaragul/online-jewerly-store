@@ -1,0 +1,154 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block content %}
+<div class="row">
+    <div class="col-lg-6">
+        <div class="box-element" id="form-wrapper">
+            <form id="form">
+                {% csrf_token %}
+                <div id="user-info">
+                    <div class="form-field">
+                        <input required class="form-control" type="text" name="name" placeholder="Name.." autocomplete="name">
+                    </div>
+                    <div class="form-field">
+                        <input required class="form-control" type="email" name="email" placeholder="Email.." autocomplete="email">
+                    </div>
+                </div>
+
+                <div id="shipping-info">
+                    <hr>
+                    <p>Shipping Information:</p>
+                    <hr>
+                    <div class="form-field">
+                        <input class="form-control" type="text" name="address" placeholder="Address.." autocomplete="street-address">
+                    </div>
+                    <div class="form-field">
+                        <input class="form-control" type="text" name="city" placeholder="City.." autocomplete="address-level2">
+                    </div>
+                    <div class="form-field">
+                        <input class="form-control" type="text" name="state" placeholder="State.." autocomplete="address-level1">
+                    </div>
+                    <div class="form-field">
+                        <input class="form-control" type="text" name="zipcode" placeholder="Zip code.." autocomplete="postal-code">
+                    </div>
+                    <div class="form-field">
+                        <input class="form-control" type="text" name="country" placeholder="Country.." autocomplete="country">
+                    </div>
+                </div>
+
+                <hr>
+                <input id="form-button" class="btn btn-success btn-block" type="submit" value="Continue">
+            </form>
+        </div>
+        <br>
+
+        <div class="box-element hidden" id="payment-info">
+            <small>Paypal Options</small>
+            <button id="make-payment">Make Payment</button>
+        </div>
+
+
+    </div>
+
+    <div class="col-lg-6">
+        <div class="box-element">
+            <a class="btn btn-outline-dark" href="{% url 'index' %}">&#x2190; Back to Cart</a>
+            <hr>
+            <h3>Order Summary</h3>
+            <hr>
+            {% for item in items %}
+            <div class="cart-row">
+                <div style="flex:2"><img class="row-image" src="{{item.product.image.url}}"></div>
+                <div style="flex:2"><p>{{item.product.name}}</p></div>
+                <div style="flex:1"><p>{{item.price}}TL</p></div>
+                <div style="flex:1"><p>x2{{item.quantity}}</p></div>
+            </div>
+            {% endfor %}
+            <h5>Items:  {{order.get_cart_items}}</h5>
+            <h5>Total:   {{order.get_cart_total|floatformat:2}}TL</h5>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    var total = '{{order.get_cart_total}}';
+    var user = '{{user}}'; // Assuming user is defined in your context
+
+    if (user == 'AnonymousUser') {
+        document.getElementById('user-info').innerHTML = '';
+    }
+
+    if (shipping == 'False' && user != 'AnonymousUser') {
+        document.getElementById('form-wrapper').classList.add("hidden");
+        document.getElementById('payment-info').classList.remove("hidden");
+    }
+
+    var form = document.getElementById('form');
+    var csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        console.log('form submitted..');
+        document.getElementById('form-button').classList.add('hidden');
+        document.getElementById('payment-info').classList.remove('hidden');
+    });
+
+    document.getElementById('make-payment').addEventListener('click', function (e) {
+        e.preventDefault();
+        document.getElementById('payment-info').classList.add('hidden');
+        document.getElementById('payment-form').classList.remove('hidden');
+    });
+
+    document.getElementById('submit-payment').addEventListener('click', function (e) {
+        e.preventDefault();
+        submitFormData();
+    });
+
+    function submitFormData() {
+        console.log('payment button clicked');
+
+        var userFormData = {
+            'name': null,
+            'email': null,
+            'total': total,
+        };
+
+        var shippingInfo = {
+            'address': null,
+            'city': null,
+            'state': null,
+            'zipcode': null,
+        };
+
+        if (user == 'AnonymousUser') {
+            userFormData.name = form.name.value;
+            userFormData.email = form.email.value;
+        }
+
+        var paymentDetails = {
+            'card_name': document.getElementById('payment-details-form').card_name.value,
+            'card_number': document.getElementById('payment-details-form').card_number.value,
+            'cvv': document.getElementById('payment-details-form').cvv.value,
+            'expiry_date': document.getElementById('payment-details-form').expiry_date.value,
+            'save_card': document.getElementById('payment-details-form').save_card.checked,
+        };
+
+        var url = "/process_order/";
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrftoken,
+            },
+            body: JSON.stringify({'form': userFormData, 'shipping': shippingInfo, 'payment': paymentDetails}),
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log('success:', data);
+            alert('Transaction completed');
+            window.location.href = "{% url 'index' %}";
+        });
+    }
+</script>
+{% endblock content %}

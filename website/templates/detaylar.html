@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+
+{% block page_title %}
+    detaylar
+{% endblock %}
+
+
+{% block content%}
+
+        <div class="container mt-3">
+
+        <div class="row">
+
+            <div class="col-12 ">
+
+
+                {% include 'partials/_detaylar.html' %}
+
+
+            </div>
+        </div>
+    </div>
+    {% include 'footer.html' %}
+{% endblock %}
+<!--
+page_range paginatordeki bi özellik sayfa numaralarını verir
+disabled pasif demek yazıyı pasifleştiriyor
+
+has_previous gerideki sayfaların sayısı
+has_next ilerideki sayfaların sayısı
+-->

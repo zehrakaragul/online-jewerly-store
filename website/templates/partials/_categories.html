@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- _categories.css dosyasını entegre et -->
+    <link rel="stylesheet" type="text/css" href="{% static '_categories.css' %}">
+</head>
+<body>
+<nav class="category navbar-expand-lg bg-body-tertiary" >
+    <div class="container">
+        <div class="collapse navbar-collapse" id="navbar">
+            <ul class="navbar-nav mx-auto">
+                {% for category in categories %}
+                <div class="grid gap-3">
+                    <div class="p-2 g-col-6">
+                        <a href="{% url 'shops_by_category' category.slug %}"
+                           class="ml-5 list-group-item list-group-item-action {% if seciliKategori == category.slug%}active{% endif %}">
+                            {{ category.kategorismi|title }}
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</nav>
+</body>
+</html>

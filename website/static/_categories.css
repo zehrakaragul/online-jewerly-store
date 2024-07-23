@@ -1,0 +1,50 @@
+/* Navbar stilini tanımla */
+.category {
+    background-color: white;
+    height: 50px;
+
+
+
+}
+
+/* Container stilini tanımla */
+.container {
+    max-width: 1140px; /* Container genişliği */
+    margin: 0 auto; /* Yatayda ortalama */
+    padding: 0 15px; /* Kenar boşlukları */
+}
+
+/* Navbar Collapse stilini tanımla */
+.collapse.navbar-collapse {
+    justify-content: center; /* İçeriği yatayda ortala */
+}
+
+/* Navbar menü öğeleri stilini tanımla */
+.navbar-nav {
+    display: flex; /* Yatay düzende göster */
+    list-style: none; /* Madde işaretlerini kaldır */
+}
+
+.navbar-nav .grid {
+    display: flex; /* Yatay düzende göster */
+}
+
+.navbar-nav .grid .p-2 {
+    flex-grow: 1; /* Öğeleri eşit genişlikte yay */
+}
+
+.navbar-nav .grid .p-2 a {
+    display: block; /* Blok öğe olarak göster */
+    padding: 10px; /* Kenar boşlukları */
+    text-decoration: none; /* Metin altı çizgisi kaldır */
+    color: black; /* Metin rengi */
+    transition: all 0.3s ease; /* Geçiş efekti */
+}
+
+.navbar-nav .grid .p-2 a:hover {
+    background-color: #f0f0f0; /* Üzerine gelindiğinde arka plan rengi */
+}
+
+.navbar-nav .grid .p-2 a.active {
+    font-weight: bold; /* Aktif olan kategoriyi kalın hale getir */
+}

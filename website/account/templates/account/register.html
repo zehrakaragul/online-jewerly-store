@@ -1,0 +1,56 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block css_files %}
+{% endblock %}
+{% block page_title%}
+{%endblock  %}
+
+{% block content %}
+    <div class="container mt-3">
+    <div class="row">
+        <div class="col-3" style="margin-left: 430px ; margin-top: 20px">
+             <h1 style="font-weight: lighter;">Üye Ol</h1>
+
+             <form method="post">
+                 {% csrf_token %}
+                 {% if hata %}
+                     <div class="alert alert-danger">
+                         {{ hata }}
+                     </div>
+                 {% endif %}
+
+                 <!-- Kullanıcı Adı Alma -->
+                 <div class="mb-3 mt-4 ">
+                     <input type="text" name="username" placeholder="Kullanıcı Adı" id="username" class="form-control " required>
+                 </div>
+                  <!-- mail Adı Alma -->
+                 <div class="mb-3 ">
+                     <input type="email" name="email" placeholder="E-mail" id="email" class="form-control" required>
+                 </div>
+
+
+                 <!-- Parola Alma -->
+                 <div class="mb-3">
+                     <input type="password" name="password" placeholder="Parola" id="password" class="form-control " required>
+                 </div>
+
+              <!-- TekrarParola Alma -->
+                 <div class="mb-3">
+                     <input type="repassword" name="repassword" placeholder="Tekrar Parola" id="repassword" class="form-control" required>
+                 </div>
+              <button type="submit"  class="btn mt-3 " style="background-color:#000000 ; color: #ffffff; margin-left: 100px; ">Üye Ol</button>
+             </form>
+
+
+        </div>
+    </div>
+    </div>
+
+{% endblock %}
+
+{% block js_files %}
+    <script src="{% static 'shop/js/script.js' %}"></script>
+{% endblock %}
+
+

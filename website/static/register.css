@@ -1,0 +1,36 @@
+.başlık{
+    font-weight: lighter;
+    margin-left: 500px;
+    margin-top: 50px;
+
+}
+.container{
+    background-color: white;
+
+}
+
+
+.isim-al{
+     margin-left: 500px;
+     margin-bottom: 20px;
+     margin-top: 10px;
+     margin-right: 500px;
+}
+.form-label{
+    margin-bottom: 20px;
+}
+
+.form-control{
+    width: 100px;
+    height: 30px;
+    font-size: medium;
+    border: 1px solid gray;
+    padding-left: 20px;
+    font-family: serif;
+}
+.btn{
+
+    background-color:#7dacdc ;
+    color: antiquewhite;
+    margin-left: 610px
+}
